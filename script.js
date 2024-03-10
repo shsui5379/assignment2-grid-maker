@@ -18,16 +18,19 @@ function addR() {
     // adding cells to the row
     for (let i = 0; i < numCols; i++) {
         let newCell = newRow.insertCell();
-
-        // initial attributes
-        newCell.style.backgroundColor = "white";
-        newCell.addEventListener("click", colorCell);
+        initializeAttributes(newCell);
     }
 }
 
 // Add a column
 function addC() {
-    alert("Clicked Add Col"); // Replace this line with your code.
+    numCols++;
+
+    // adding column to rows
+    for (let i = 0; i < numRows; i++) {
+        let newCell = gridElement.rows.item(i).insertCell();
+        initializeAttributes(newCell);
+    }
 }
 
 // Remove a row
@@ -67,4 +70,13 @@ function clearAll() {
  */
 function colorCell(e) {
     alert("Cell clicked");
+}
+
+/**
+ * Sets a cell's initial color and callback handler
+ * @param {HTMLTableCellElement} cell Cell to set up
+ */
+function initializeAttributes(cell) {
+    cell.style.backgroundColor = "white";
+    cell.addEventListener("click", colorCell);
 }
