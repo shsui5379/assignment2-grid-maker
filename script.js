@@ -35,7 +35,7 @@ function addC() {
 
 // Remove a row
 function removeR() {
-    if (numRows == 0) return alert("No more rows to remove");
+    if (numRows === 0) return alert("No more rows to remove");
 
     numRows--;
 
