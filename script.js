@@ -79,7 +79,9 @@ function clearAll() {
  * @param {Event} e The event of the cell being clicked on
  */
 function colorCell(e) {
-    alert("Cell clicked");
+    if (colorSelected === "SELECT") return alert("Please pick a color from the dropdown menu");
+
+    e.target.style.backgroundColor = colorSelected;
 }
 
 /**
