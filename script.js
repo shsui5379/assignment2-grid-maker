@@ -3,6 +3,9 @@ let numRows = 0;
 let numCols = 0;
 let colorSelected = document.getElementById("selectedColorId").value;
 
+const DEFAULT_COLOR = "white";
+const COLOR_NOT_SET = "SELECT";
+
 /**
  * @type {HTMLTableElement}
  */
@@ -61,7 +64,19 @@ function selectColor() {
 
 // Fill all uncolored cells
 function fillU() {
-    alert("Clicked Fill All Uncolored"); // Replace this line with your code.
+    if (colorSelected === COLOR_NOT_SET) return alert("Please pick a color from the dropdown menu");
+
+    for (let rowIndex = 0; rowIndex < numRows; rowIndex++) {
+        let row = gridElement.rows.item(rowIndex);
+
+        for (let columnIndex = 0; columnIndex < numCols; columnIndex++) {
+            let cell = row.cells.item(columnIndex);
+
+            if (cell.style.backgroundColor === DEFAULT_COLOR) {
+                cell.style.backgroundColor = colorSelected;
+            }
+        }
+    }
 }
 
 // Fill all cells
@@ -79,7 +94,7 @@ function clearAll() {
  * @param {Event} e The event of the cell being clicked on
  */
 function colorCell(e) {
-    if (colorSelected === "SELECT") return alert("Please pick a color from the dropdown menu");
+    if (colorSelected === COLOR_NOT_SET) return alert("Please pick a color from the dropdown menu");
 
     e.target.style.backgroundColor = colorSelected;
 }
@@ -89,6 +104,6 @@ function colorCell(e) {
  * @param {HTMLTableCellElement} cell Cell to set up
  */
 function initializeAttributes(cell) {
-    cell.style.backgroundColor = "white";
+    cell.style.backgroundColor = DEFAULT_COLOR;
     cell.addEventListener("click", colorCell);
 }
