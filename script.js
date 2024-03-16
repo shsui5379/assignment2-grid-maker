@@ -4,6 +4,7 @@ let numCols = 0;
 let colorSelected = document.getElementById("selectedColorId").value;
 
 const DEFAULT_COLOR = "white";
+const COLOR_NOT_SET = "SELECT";
 
 /**
  * @type {HTMLTableElement}
@@ -81,7 +82,7 @@ function clearAll() {
  * @param {Event} e The event of the cell being clicked on
  */
 function colorCell(e) {
-    if (colorSelected === "SELECT") return alert("Please pick a color from the dropdown menu");
+    if (colorSelected === COLOR_NOT_SET) return alert("Please pick a color from the dropdown menu");
 
     e.target.style.backgroundColor = colorSelected;
 }
