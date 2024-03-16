@@ -3,6 +3,8 @@ let numRows = 0;
 let numCols = 0;
 let colorSelected = document.getElementById("selectedColorId").value;
 
+const DEFAULT_COLOR = "white";
+
 /**
  * @type {HTMLTableElement}
  */
@@ -89,6 +91,6 @@ function colorCell(e) {
  * @param {HTMLTableCellElement} cell Cell to set up
  */
 function initializeAttributes(cell) {
-    cell.style.backgroundColor = "white";
+    cell.style.backgroundColor = DEFAULT_COLOR;
     cell.addEventListener("click", colorCell);
 }
