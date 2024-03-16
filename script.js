@@ -64,7 +64,19 @@ function selectColor() {
 
 // Fill all uncolored cells
 function fillU() {
-    alert("Clicked Fill All Uncolored"); // Replace this line with your code.
+    if (colorSelected === COLOR_NOT_SET) return alert("Please pick a color from the dropdown menu");
+
+    for (let rowIndex = 0; rowIndex < numRows; rowIndex++) {
+        let row = gridElement.rows.item(rowIndex);
+
+        for (let columnIndex = 0; columnIndex < numCols; columnIndex++) {
+            let cell = row.cells.item(columnIndex);
+
+            if (cell.style.backgroundColor === DEFAULT_COLOR) {
+                cell.style.backgroundColor = colorSelected;
+            }
+        }
+    }
 }
 
 // Fill all cells
