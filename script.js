@@ -66,30 +66,14 @@ function selectColor() {
 function fillU() {
     if (colorSelected === COLOR_NOT_SET) return alert("Please pick a color from the dropdown menu");
 
-    for (let rowIndex = 0; rowIndex < numRows; rowIndex++) {
-        let row = gridElement.rows.item(rowIndex);
-
-        for (let columnIndex = 0; columnIndex < numCols; columnIndex++) {
-            let cell = row.cells.item(columnIndex);
-
-            if (cell.style.backgroundColor === DEFAULT_COLOR) {
-                cell.style.backgroundColor = colorSelected;
-            }
-        }
-    }
+    paintGrid(colorSelected, function (cell) { return cell.style.backgroundColor === DEFAULT_COLOR; });
 }
 
 // Fill all cells
 function fillAll() {
     if (colorSelected === COLOR_NOT_SET) return alert("Please pick a color from the dropdown menu");
 
-    for (let rowIndex = 0; rowIndex < numRows; rowIndex++) {
-        let row = gridElement.rows.item(rowIndex);
-
-        for (let columnIndex = 0; columnIndex < numCols; columnIndex++) {
-            row.cells.item(columnIndex).style.backgroundColor = colorSelected;
-        }
-    }
+    paintGrid(colorSelected);
 }
 
 // Clear all cells
@@ -114,4 +98,23 @@ function colorCell(e) {
 function initializeAttributes(cell) {
     cell.style.backgroundColor = DEFAULT_COLOR;
     cell.addEventListener("click", colorCell);
+}
+
+/**
+ * Colors all cells in the grid with a given color, based on an optionally defined condition.
+ * @param {String} targetColor Target color to paint the whole grid
+ * @param {(cell: HTMLTableCellElement) => boolean} condition Function that determines whether a given cell should be colored
+ */
+function paintGrid(targetColor, condition = function (cell) { return true; }) {
+    for (let rowIndex = 0; rowIndex < numRows; rowIndex++) {
+        let row = gridElement.rows.item(rowIndex);
+
+        for (let columnIndex = 0; columnIndex < numCols; columnIndex++) {
+            let cell = row.cells.item(columnIndex);
+
+            if (condition(cell)) {
+                cell.style.backgroundColor = targetColor;
+            }
+        }
+    }
 }
