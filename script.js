@@ -78,7 +78,7 @@ function fillAll() {
 
 // Clear all cells
 function clearAll() {
-    alert("Clicked Clear All"); // Replace this line with your code.
+    paintGrid(DEFAULT_COLOR);
 }
 
 /**
