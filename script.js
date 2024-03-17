@@ -81,7 +81,15 @@ function fillU() {
 
 // Fill all cells
 function fillAll() {
-    alert("Clicked Fill All"); // Replace this line with your code.
+    if (colorSelected === COLOR_NOT_SET) return alert("Please pick a color from the dropdown menu");
+
+    for (let rowIndex = 0; rowIndex < numRows; rowIndex++) {
+        let row = gridElement.rows.item(rowIndex);
+
+        for (let columnIndex = 0; columnIndex < numCols; columnIndex++) {
+            row.cells.item(columnIndex).style.backgroundColor = colorSelected;
+        }
+    }
 }
 
 // Clear all cells
